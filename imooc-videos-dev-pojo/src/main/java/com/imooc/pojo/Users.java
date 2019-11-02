@@ -13,7 +13,7 @@ public class Users {
     private String id;
 
     /**
-     * 用户名
+     * 用户名 | required(必填项)
      */
     @ApiModelProperty(value="用户名", name="username", example="imoocuser", required=true)
     private String username;

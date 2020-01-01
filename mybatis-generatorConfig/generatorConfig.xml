@@ -28,8 +28,11 @@
         <javaClientGenerator targetPackage="com.imooc.mapper" targetProject="src/main/java" 
         type="XMLMAPPER"/>
 
-
 		<table tableName="users"></table>
+        <table tableName="bgm"></table>
+        <table tableName="comments"></table>
+        <table tableName="search_records"></table>
+        <table tableName="users_fans"></table>
 		 
     </context>
 </generatorConfiguration>

@@ -3,7 +3,7 @@
 
 记录：
 拓展知识：
-imooc-videos-dev-common：
+jacky-common：
  * 全局唯一id：\src\main\java\org\n3r\idworkerorg.n3r.idworker
  * Swagger2的使用： 地址：http://localhost:8081/swagger-ui.html
 

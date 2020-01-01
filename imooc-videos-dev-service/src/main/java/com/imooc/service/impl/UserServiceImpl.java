@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
         Users user = new Users();
         user.setUsername(username);
 
-        Users result = userMapper.selectOne(user);
+        Users result = userMapper.selectOne(user); //根据传入条件选出某一条记录
 
         return result == null ? false : true;
     }

@@ -17,7 +17,7 @@ public class MergeVideoMp3 {
 	
 	public void convertor(String videoInputPath, String mp3InputPath,
 			double seconds, String videoOutputPath) throws Exception {
-//		ffmpeg.exe -i 苏州大裤衩.mp4 -i bgm.mp3 -t 7 -y 新的视频.mp4
+//		ffmpeg.exe -i 视频.mp4 -i bgm.mp3 -t 7 -y 新的视频.mp4
 		List<String> command = new ArrayList<>();
 		command.add(ffmpegEXE);
 		
@@ -33,17 +33,17 @@ public class MergeVideoMp3 {
 		command.add("-y");
 		command.add(videoOutputPath);
 		
-//		for (String c : command) {
-//			System.out.print(c + " ");
-//		}
-		
 		ProcessBuilder builder = new ProcessBuilder(command);
 		Process process = builder.start();
-		
+
+		//处理视频过程产生的流（错误流）
 		InputStream errorStream = process.getErrorStream();
 		InputStreamReader inputStreamReader = new InputStreamReader(errorStream);
 		BufferedReader br = new BufferedReader(inputStreamReader);
-		
+
+		/**
+		 * 作用：确保上边完整的把输入流给读取完 | readLine()：当读到最后一行输入流信息才会返回null
+		 */
 		String line = "";
 		while ( (line = br.readLine()) != null ) {
 		}
@@ -63,7 +63,7 @@ public class MergeVideoMp3 {
 	public static void main(String[] args) {
 		MergeVideoMp3 ffmpeg = new MergeVideoMp3("C:\\ffmpeg\\bin\\ffmpeg.exe");
 		try {
-			ffmpeg.convertor("C:\\苏州大裤衩.mp4", "C:\\music.mp3", 7.1, "C:\\这是通过java生产的视频.mp4");
+			ffmpeg.convertor("C:\\视频.mp4", "C:\\music.mp3", 7.1, "C:\\这是通过java生产的视频.mp4");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

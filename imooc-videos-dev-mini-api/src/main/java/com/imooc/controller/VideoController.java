@@ -85,7 +85,7 @@ public class VideoController extends BasicController {
 			if (file != null) {
 				
 				String fileName = file.getOriginalFilename();
-				// abc.mp4
+				// abc.mp4	cyf:split():分割【按 '.'】、'\\':转义
 				String arrayFilenameItem[] =  fileName.split("\\.");
 				String fileNamePrefix = "";
 				for (int i = 0 ; i < arrayFilenameItem.length-1 ; i ++) {

@@ -55,14 +55,15 @@ public class UserController extends BasicController {
 		try {
 			if (files != null && files.length > 0) {
 				
-				String fileName = files[0].getOriginalFilename();
+				String fileName = files[0].getOriginalFilename();//获取磁盘名
 				if (StringUtils.isNotBlank(fileName)) {
 					// 文件上传的最终保存路径
 					String finalFacePath = fileSpace + uploadPathDB + "/" + fileName;
-					// 设置数据库保存的路径
+					// 设置数据库保存的相对路径
 					uploadPathDB += ("/" + fileName);
 					
 					File outFile = new File(finalFacePath);
+					//cyf： 路径非空（！=） 或者 磁盘实际地址没文件夹
 					if (outFile.getParentFile() != null || !outFile.getParentFile().isDirectory()) {
 						// 创建父文件夹
 						outFile.getParentFile().mkdirs();
@@ -70,6 +71,7 @@ public class UserController extends BasicController {
 					
 					fileOutputStream = new FileOutputStream(outFile);
 					inputStream = files[0].getInputStream();
+					//把输入流复制到输出流（磁盘）
 					IOUtils.copy(inputStream, fileOutputStream);
 				}
 				

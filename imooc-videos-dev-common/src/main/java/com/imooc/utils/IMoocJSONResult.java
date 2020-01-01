@@ -19,7 +19,7 @@ public class IMoocJSONResult {
     // 响应消息
     private String msg;
 
-    // 响应中的数据
+    // 响应中的数据：视频、图片、音频
     private Object data;
     
     private String ok;	// 不使用

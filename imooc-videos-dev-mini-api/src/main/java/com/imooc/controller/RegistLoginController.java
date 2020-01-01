@@ -27,7 +27,7 @@ public class RegistLoginController extends BasicController {
 	private UserService userService;
 	
 	@ApiOperation(value="用户注册", notes="用户注册的接口")
-	@PostMapping("/regist")
+	@PostMapping("/")
 	public IMoocJSONResult regist(@RequestBody Users user) throws Exception {
 		
 		// 1. 判断用户名和密码必须不为空
@@ -58,17 +58,23 @@ public class RegistLoginController extends BasicController {
 //		UsersVO userVO = new UsersVO();
 //		BeanUtils.copyProperties(user, userVO);
 //		userVO.setUserToken(uniqueToken);
-		
+
 		UsersVO userVO = setUserRedisSessionToken(user);
 		
 		return IMoocJSONResult.ok(userVO);
 	}
-	
+
+	/**
+	 * 开发用户无状态redis-session
+	 * ：是用来做分割层级关系，前边为文件夹
+	 * @param userModel
+	 * @return
+	 */
 	public UsersVO setUserRedisSessionToken(Users userModel) {
 		String uniqueToken = UUID.randomUUID().toString();
 		redis.set(USER_REDIS_SESSION + ":" + userModel.getId(), uniqueToken, 1000 * 60 * 30);
 		
-		UsersVO userVO = new UsersVO();
+		UsersVO userVO = new UsersVO(); //Users是数据层的，改动不好
 		BeanUtils.copyProperties(userModel, userVO);
 		userVO.setUserToken(uniqueToken);
 		return userVO;
